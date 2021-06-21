@@ -7,28 +7,29 @@ module OneSignal
   class Notification
     attr_reader :contents, :headings, :template_id, :included_segments, :excluded_segments,
                 :included_targets, :email_subject, :send_after, :attachments, :sounds, :buttons,
-                :email_body, :delayed_option, :delivery_time_of_day
+                :email_body, :delayed_option, :delivery_time_of_day, :throttle_rate_per_minute
 
     def initialize **params
       unless params.include?(:contents) || params.include?(:template_id)
         raise ArgumentError, 'missing contents or template_id'
       end
 
-      @contents             = params[:contents]
-      @headings             = params[:headings]
-      @template_id          = params[:template_id]
-      @included_segments    = params[:included_segments]
-      @excluded_segments    = params[:excluded_segments]
-      @included_targets     = params[:included_targets]
-      @email_subject        = params[:email_subject]
-      @email_body           = params[:email_body]
-      @send_after           = params[:send_after].to_s
-      @delayed_option       = params[:delayed_option].to_s
-      @delivery_time_of_day = params[:delivery_time_of_day].to_s
-      @attachments          = params[:attachments]
-      @filters              = params[:filters]
-      @sounds               = params[:sounds]
-      @buttons              = params[:buttons]
+      @contents                 = params[:contents]
+      @headings                 = params[:headings]
+      @template_id              = params[:template_id]
+      @included_segments        = params[:included_segments]
+      @excluded_segments        = params[:excluded_segments]
+      @included_targets         = params[:included_targets]
+      @email_subject            = params[:email_subject]
+      @email_body               = params[:email_body]
+      @send_after               = params[:send_after].to_s
+      @delayed_option           = params[:delayed_option].to_s
+      @delivery_time_of_day     = params[:delivery_time_of_day].to_s
+      @throttle_rate_per_minute = params[:throttle_rate_per_minute]
+      @attachments              = params[:attachments]
+      @filters                  = params[:filters]
+      @sounds                   = params[:sounds]
+      @buttons                  = params[:buttons]
     end
 
     def as_json options = {}
